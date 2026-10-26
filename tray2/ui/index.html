@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenRemoteDesk</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- 左侧导航 -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" role="img" aria-label="OpenRemoteDesk">
+          <path d="M3 9.375 L7.5 16.8 L12 7.6875 L16.5 15.1125 L21 6" stroke="#26A67C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="3" cy="9.375" r="1.7" fill="#1F2329"/>
+        </svg>
+      </div>
+      <span class="brand-name">OpenRemoteDesk</span>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-page="overview">
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="12" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M9 20h6M12 16.5V20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>概览</span>
+      </button>
+      <button class="nav-item" data-page="devices">
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="10" height="13" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="16" y="9" width="4.5" height="9" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6.5 18h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>设备</span>
+      </button>
+      <button class="nav-item" data-page="account">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.8 19.2c1.1-3.3 3.9-5 7.2-5s6.1 1.7 7.2 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>账号</span>
+      </button>
+      <button class="nav-item" data-page="settings">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 3.5v2.2M12 18.3v2.2M4.9 7.8l1.9 1.1M17.2 15.1l1.9 1.1M4.9 16.2l1.9-1.1M17.2 8.9l1.9-1.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span>设置</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="gate-state" id="gateState">
+        <span class="dot"></span><span id="gateText">校验口启动中</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 右侧内容 -->
+  <main class="main">
+    <header class="titlebar" id="titlebar">
+      <div class="title-actions">
+        <button class="win-btn" id="btnMin" title="最小化">
+          <svg viewBox="0 0 12 12"><path d="M2.5 6h7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="win-btn close" id="btnClose" title="关闭">
+          <svg viewBox="0 0 12 12"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="content" id="pageOverview">
+
+      <section class="hero card">
+        <div class="hero-main">
+          <div class="hero-name-row">
+            <h1 id="machineName">这台电脑</h1>
+            <span class="pill" id="onlinePill">检测中</span>
+            <span class="tag">本机</span>
+          </div>
+          <p class="hero-sub">登录同一账号的平板可以直接连接；其他人需要控制码</p>
+          <div class="hero-meta">
+            <span>设备 ID <b id="deviceId">—</b></span>
+            <span>虚拟 IP <b id="virtualIp">—</b></span>
+            <span class="account-link">账号 <b id="heroAccount">未登录</b></span>
+          </div>
+        </div>
+        <div class="hero-art">
+          <svg viewBox="0 0 275 200" fill="none" aria-hidden="true">
+            <ellipse cx="128" cy="182" rx="86" ry="9" fill="#EDF1F0"/>
+            <rect x="24" y="30" width="172" height="110" rx="14" fill="#E8F6F0" stroke="#26A67C" stroke-width="4"/>
+            <path d="M67 76.4 L88.5 108 L110 69.2 L131.5 100.8 L153 62" stroke="#26A67C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="67" cy="76.4" r="6" fill="#26A67C"/>
+            <rect x="102" y="140" width="16" height="22" rx="3" fill="#B8CCC4"/>
+            <rect x="76" y="162" width="68" height="8" rx="4" fill="#B8CCC4"/>
+            <path d="M212 62 A 26 26 0 0 1 212 108" stroke="#26A67C" stroke-width="6" stroke-linecap="round"/>
+            <path d="M228 46 A 43 43 0 0 1 228 124" stroke="#5FBF9E" stroke-width="6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <div class="grid-2">
+        <section class="card">
+          <div class="card-head">
+            <h2>运行状态</h2>
+            <button class="link-btn" id="btnRefresh">刷新</button>
+          </div>
+          <div class="status-list">
+            <div class="status-row">
+              <span class="status-label">串流服务</span>
+              <span class="pill" id="pillSunshine">检测中</span>
+            </div>
+            <div class="status-row">
+              <span class="status-label">虚拟网络</span>
+              <span class="pill" id="pillEasytier">检测中</span>
+            </div>
+            <div class="status-row">
+              <span class="status-label">控制校验口</span>
+              <span class="pill" id="pillGate">检测中</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h2>当前连接</h2>
+          </div>
+          <div class="conn-empty" id="connEmpty">
+            <div class="conn-icon">
+              <svg viewBox="0 0 24 24"><path d="M7 4.5v15M17 4.5v15M4.5 8.5h5v7h-5zM14.5 8.5h5v7h-5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <p id="connTitle">没有设备连接</p>
+            <span id="connDetail">平板连上来后，这里会显示画面规格</span>
+          </div>
+        </section>
+      </div>
+
+      <section class="card code-card">
+        <div class="code-left">
+          <div class="card-head">
+            <h2>临时控制码</h2>
+          </div>
+          <div class="code-number empty" id="codeNumber">点击生成</div>
+          <p class="code-hint" id="codeHint">点「生成」创建一串 6 位数字，10 分钟内有效</p>
+        </div>
+        <div class="code-actions">
+          <button class="btn primary" id="btnGenCode">生成</button>
+          <button class="btn ghost" id="btnCopyCode" disabled>复制</button>
+        </div>
+      </section>
+
+      <div class="quick-row">
+        <button class="quick" id="btnOpenLogs">
+          <svg viewBox="0 0 24 24"><path d="M5 4.5h9l5 5v10H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 4.5V10h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span>日志文件夹</span>
+        </button>
+        <button class="quick" id="btnOpenAccount">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.8 19.2c1.1-3.3 3.9-5 7.2-5s6.1 1.7 7.2 5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          <span>账号管理</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 账号页 -->
+    <div class="content" id="pageAccount" hidden>
+      <section class="card account-card" id="accountLoggedOut">
+        <div class="card-head">
+          <h2>登录统一账号</h2>
+        </div>
+        <p class="card-sub">登录后，同一账号的平板可以直接连接这台电脑</p>
+
+        <div class="segmented">
+          <button class="seg active" data-mode="sms">验证码登录</button>
+          <button class="seg" data-mode="password">密码登录</button>
+        </div>
+
+        <div id="formSms">
+          <label class="field-label">手机号</label>
+          <div class="input-row">
+            <span class="prefix">+86</span>
+            <input id="phoneSms" type="tel" inputmode="numeric" maxlength="11" placeholder="11 位手机号">
+          </div>
+          <p class="hint">请输入 11 位手机号，系统会自动加 +86</p>
+
+          <label class="field-label">验证码</label>
+          <div class="input-row code-input-row">
+            <input id="smsCode" type="tel" inputmode="numeric" maxlength="6" placeholder="6 位数字">
+            <button class="btn ghost small" id="btnSendCode" disabled>获取验证码</button>
+          </div>
+          <p class="hint">6 位数字验证码，60 秒内有效</p>
+
+          <div id="nickRow" hidden>
+            <label class="field-label">昵称（新账号）</label>
+            <input id="nickname" class="input-full" maxlength="64" placeholder="你希望别人看到的名字">
+            <p class="hint">2–64 个字符，可稍后修改</p>
+          </div>
+
+          <p class="form-error" id="smsError"></p>
+          <button class="btn primary block" id="btnSmsLogin">登录 / 注册</button>
+        </div>
+
+        <div id="formPassword" hidden>
+          <label class="field-label">账号</label>
+          <input id="account" class="input-full" placeholder="用户名、邮箱或手机号">
+          <p class="hint">用户名、邮箱或手机号；手机号会自动补 +86</p>
+
+          <label class="field-label">密码</label>
+          <div class="input-row">
+            <input id="password" type="password" placeholder="请输入密码">
+            <button class="eye" id="btnEye" type="button">显示</button>
+          </div>
+          <p class="hint">忘记密码请到账号中心，用手机号验证码登录后重设</p>
+
+          <p class="form-error" id="passwordError"></p>
+          <button class="btn primary block" id="btnPasswordLogin">登录</button>
+        </div>
+      </section>
+
+      <section class="card account-card" id="accountLoggedIn" hidden>
+        <div class="card-head">
+          <h2>账号</h2>
+          <button class="btn ghost small" id="btnLogout">退出登录</button>
+        </div>
+        <div class="account-profile">
+          <div class="avatar" id="avatar">L</div>
+          <div>
+            <div class="account-name" id="accountName">已登录</div>
+            <div class="account-sub" id="accountSub">云端功能已开启 · 同一账号设备可直接互连</div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 设备管理页 -->
+    <div class="content" id="pageDevices" hidden>
+      <section class="card">
+        <div class="card-head">
+          <h2>我的设备</h2>
+          <button class="btn ghost small" id="btnRefreshDevices">刷新</button>
+        </div>
+        <p class="card-sub">登录过这个账号的设备都会出现在这里。删除只把它从名单移除；如果该设备仍在登录，下次上线会重新出现。</p>
+        <ul class="device-list" id="deviceList">
+          <li class="device-empty">登录后可查看</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- 设置页 -->
+    <div class="content" id="pageSettings" hidden>
+      <section class="card">
+        <div class="card-head">
+          <h2>启动</h2>
+        </div>
+        <p class="card-sub">控制开机后这台电脑是否自动待命。</p>
+
+        <label class="setting-option">
+          <input type="checkbox" id="autoStartToggle">
+          <span>
+            <b>开机自动启动</b>
+            <small>开机后在托盘自动待命，不用手动打开；关掉后要自己双击图标才会出现</small>
+          </span>
+        </label>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>关闭按钮</h2>
+        </div>
+        <p class="card-sub">点右上角关闭按钮时默认做什么。随时可以在这里修改。</p>
+
+        <label class="setting-option">
+          <input type="radio" name="closeAction" value="ask" checked>
+          <span>
+            <b>每次询问</b>
+            <small>首次点关闭时让你选择隐藏还是退出，可勾选记住</small>
+          </span>
+        </label>
+        <label class="setting-option">
+          <input type="radio" name="closeAction" value="hide">
+          <span>
+            <b>隐藏到托盘</b>
+            <small>保持程序和远程连接，双击托盘图标可重新打开</small>
+          </span>
+        </label>
+        <label class="setting-option">
+          <input type="radio" name="closeAction" value="exit">
+          <span>
+            <b>退出程序</b>
+            <small>结束托盘程序，并停止串流与组网服务；远程将无法连接</small>
+          </span>
+        </label>
+      </section>
+    </div>
+
+  </main>
+</div>
+
+<!-- 关闭按钮：首次询问 -->
+<div class="modal-mask" id="closeMask" hidden>
+  <div class="modal">
+    <h3>关闭OpenRemoteDesk</h3>
+    <p class="modal-sub">隐藏会保持远程连接；退出程序会同时停止串流与组网服务。</p>
+
+    <label class="setting-option">
+      <input type="radio" name="closeChoice" value="hide" checked>
+      <span>
+        <b>隐藏到托盘</b>
+        <small>保持程序和远程连接，双击托盘图标可回来</small>
+      </span>
+    </label>
+    <label class="setting-option">
+      <input type="radio" name="closeChoice" value="exit">
+      <span>
+        <b>退出程序</b>
+        <small>结束托盘程序，并停止串流与组网服务；远程将无法连接</small>
+      </span>
+    </label>
+
+    <label class="remember">
+      <input type="checkbox" id="closeRemember">
+      <span>记住我的选择，下次不再询问</span>
+    </label>
+
+    <div class="modal-actions">
+      <button class="btn ghost" id="btnCloseCancel">取消</button>
+      <button class="btn primary" id="btnCloseOk">确定</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

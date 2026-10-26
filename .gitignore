@@ -1,0 +1,72 @@
+# === OpenRemoteDesk·电脑端（lingwang-host）===
+
+# 成品安装包（发版走 GitHub Release，不进库）
+dist/
+
+# 第三方二进制货舱：换机运行 build/assemble-payload.ps1 从散装源重建
+# 文件清单与 SHA256 见 payload/MANIFEST.txt
+payload/sunshine/
+payload/easytier/
+payload/nssm/
+payload/drivers/
+
+# 托盘编译产物（源码在 tray2/，构建后由 build\make-installer.ps1 复制进 payload）
+payload/tray/*.dll
+payload/tray/*.pdb
+payload/tray/*.config
+payload/tray/runtimes/
+payload/tray/ui/
+
+# 证书与私钥：换机重新生成自签 CA 与驱动签名证书，绝不入库
+payload/cert/
+*.cer
+*.pfx
+*.p12
+*.pem
+*.key
+
+# 所有 exe 均为第三方或编译产物（托盘源码在 tray/，用 tray/build-tray.ps1 编译）
+*.exe
+
+# 构建暂存区（make-installer.ps1 注入本机私密变量后的落地处，不进库）
+build/staging/
+
+# 构建时读取的本机私密变量（模板 local-secrets.example.txt 可入库）
+installer/local-secrets.txt
+
+# .NET / Visual Studio 中间产物
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# 通用密钥/凭据兜底
+.env
+.env.*
+!.env.example
+*secret*
+!installer/local-secrets.example.txt
+credentials*
+*.keystore
+*.jks
+id_rsa*
+id_ed25519*
+*.ppk
+
+# 日志/缓存/系统杂物
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 压缩包（构建刚需时逐条例外并说明原因）
+*.zip
+*.7z
+*.rar
+
+# 本地调试截图
+tray2/*.png

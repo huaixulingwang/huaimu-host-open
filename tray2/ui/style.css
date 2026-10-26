@@ -1,0 +1,487 @@
+:root {
+  --bg: #f7f8fa;
+  --card: #ffffff;
+  --line: #edf0f2;
+  --text: #1f2329;
+  --text-2: #646a73;
+  --text-3: #8f959e;
+  --primary: #26a67c;
+  --primary-dark: #1e8a66;
+  --primary-soft: #e9f6f1;
+  --danger: #e5484d;
+  --danger-soft: #fdeeee;
+  --radius: 16px;
+  --shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 10px 28px rgba(15, 23, 42, .05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: "Microsoft YaHei UI", "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  user-select: none;
+}
+
+.app { display: flex; height: 100%; }
+
+/* ── 侧栏 ─────────────────────────────── */
+.sidebar {
+  width: 208px;
+  flex: 0 0 208px;
+  background: var(--card);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 22px;
+  -webkit-app-region: no-drag;
+}
+
+.brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-mark svg { width: 20px; height: 20px; }
+
+.brand-name { font-size: 15px; font-weight: 600; letter-spacing: .2px; }
+
+.nav { display: flex; flex-direction: column; gap: 4px; }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+
+.nav-item svg { width: 18px; height: 18px; }
+
+.nav-item:hover { background: #f5f6f8; color: var(--text); }
+
+.nav-item.active { background: var(--primary-soft); color: var(--primary-dark); font-weight: 600; }
+
+.sidebar-foot { margin-top: auto; padding: 8px 10px 2px; }
+
+.gate-state {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  color: var(--text-3);
+}
+
+.gate-state .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #c9ced4;
+}
+
+.gate-state.on .dot { background: var(--primary); }
+
+/* ── 主区 ─────────────────────────────── */
+.main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+.titlebar {
+  height: 48px;
+  flex: 0 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px;
+  cursor: default;
+}
+
+.title-actions { display: flex; gap: 2px; }
+
+.win-btn {
+  width: 34px;
+  height: 30px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+
+.win-btn svg { width: 12px; height: 12px; }
+
+.win-btn:hover { background: #eef0f3; color: var(--text); }
+
+.win-btn.close:hover { background: var(--danger); color: #fff; }
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 28px 28px;
+}
+
+.content::-webkit-scrollbar { width: 8px; }
+.content::-webkit-scrollbar-thumb { background: #dcdfe3; border-radius: 4px; }
+.content::-webkit-scrollbar-thumb:hover { background: #c9ced4; }
+
+/* ── 卡片 ─────────────────────────────── */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 22px;
+  margin-bottom: 16px;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.card-head h2 { font-size: 14px; font-weight: 600; color: var(--text); }
+
+.card-sub { font-size: 12px; color: var(--text-3); margin: -6px 0 16px; }
+
+/* ── 设备大卡 ─────────────────────────── */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 26px;
+}
+
+.hero-name-row { display: flex; align-items: center; gap: 10px; }
+
+.hero h1 { font-size: 24px; font-weight: 700; letter-spacing: .3px; }
+
+.tag {
+  font-size: 11px;
+  color: var(--text-3);
+  background: #f2f4f6;
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+.hero-sub { color: var(--text-2); font-size: 12px; margin-top: 10px; }
+
+.hero-meta {
+  display: flex;
+  gap: 22px;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.hero-meta b {
+  color: var(--text-2);
+  font-weight: 500;
+  font-family: Consolas, "Microsoft YaHei UI", monospace;
+}
+
+.hero-art svg { width: 140px; height: 102px; opacity: .95; overflow: visible; }
+
+/* ── 状态药丸 ─────────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: #f2f4f6;
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+.pill.ok { background: var(--primary-soft); color: var(--primary-dark); }
+.pill.bad { background: var(--danger-soft); color: var(--danger); }
+
+.status-list { display: flex; flex-direction: column; }
+
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  border-bottom: 1px solid #f4f6f8;
+}
+
+.status-row:last-child { border-bottom: 0; }
+
+.status-label { color: var(--text-2); font-size: 13px; }
+
+/* ── 两列 ─────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* ── 当前连接 ─────────────────────────── */
+.conn-empty { text-align: center; padding: 8px 0 4px; }
+
+.conn-icon { color: #c9ced4; margin-bottom: 8px; }
+.conn-icon svg { width: 26px; height: 26px; }
+
+.conn-empty p { font-size: 13px; color: var(--text-2); margin-bottom: 4px; }
+
+.conn-empty span { font-size: 12px; color: var(--text-3); line-height: 1.6; }
+
+.conn-empty.active .conn-icon { color: var(--primary); }
+
+/* ── 控制码 ───────────────────────────── */
+.code-card { display: flex; align-items: center; justify-content: space-between; }
+
+.code-number {
+  font-family: Consolas, "Segoe UI", monospace;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--primary-dark);
+  line-height: 1.2;
+  margin: 2px 0 6px;
+}
+
+.code-number.empty {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #c3c9cf;
+  padding: 10px 0 8px;
+}
+
+.code-hint { font-size: 12px; color: var(--text-3); }
+
+.account-link b { cursor: pointer; color: var(--primary-dark); }
+
+.code-actions { display: flex; gap: 10px; }
+
+/* ── 按钮 ─────────────────────────────── */
+.btn {
+  height: 38px;
+  padding: 0 22px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, opacity .15s ease;
+}
+
+.btn.primary { background: var(--primary); color: #fff; }
+.btn.primary:hover { background: var(--primary-dark); }
+
+.btn.ghost {
+  background: #fff;
+  border-color: #dfe3e8;
+  color: var(--text-2);
+}
+
+.btn.ghost:hover { border-color: #c9ced4; color: var(--text); }
+
+.btn.small { height: 32px; padding: 0 14px; font-size: 12px; border-radius: 8px; }
+
+.btn.block { width: 100%; height: 42px; margin-top: 18px; }
+
+.btn:disabled { opacity: .45; cursor: default; }
+
+.link-btn {
+  border: 0;
+  background: transparent;
+  color: var(--primary-dark);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ── 快捷入口 ─────────────────────────── */
+.quick-row { display: flex; gap: 12px; }
+
+.quick {
+  flex: 1;
+  height: 62px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.quick svg { width: 18px; height: 18px; }
+
+.quick:hover { border-color: #d7dde2; box-shadow: var(--shadow); }
+
+/* ── 账号页 ───────────────────────────── */
+.segmented {
+  display: inline-flex;
+  background: #f2f4f6;
+  border-radius: 10px;
+  padding: 3px;
+  margin-bottom: 20px;
+}
+
+.seg {
+  height: 32px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.seg.active { background: #fff; color: var(--text); box-shadow: 0 1px 3px rgba(15,23,42,.08); font-weight: 600; }
+
+.field-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-2);
+  margin: 14px 0 7px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  border: 1px solid #e3e7eb;
+  border-radius: 10px;
+  background: #fff;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.input-row:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(38,166,124,.12); }
+
+.input-row .prefix {
+  width: 52px;
+  text-align: center;
+  color: var(--text-2);
+  border-right: 1px solid #eef0f3;
+  line-height: 44px;
+  font-size: 13px;
+}
+
+.input-row input, .input-full {
+  flex: 1;
+  height: 42px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  padding: 0 14px;
+  min-width: 0;
+}
+
+.input-full {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #e3e7eb;
+  border-radius: 10px;
+  background: #fff;
+  padding: 0 14px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.input-full:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(38,166,124,.12); }
+
+.code-input-row { padding-right: 8px; }
+.code-input-row input { padding-left: 14px; }
+
+.eye {
+  border: 0;
+  background: transparent;
+  color: var(--primary-dark);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 14px;
+  height: 42px;
+}
+
+.hint { font-size: 12px; color: #9aa1a9; margin-top: 7px; line-height: 1.5; }
+
+.form-error { font-size: 12px; color: var(--danger); margin-top: 12px; min-height: 16px; }
+
+.account-profile { display: flex; align-items: center; gap: 14px; padding: 6px 0 2px; }
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.account-name { font-size: 15px; font-weight: 600; }
+
+.account-sub { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+[hidden] { display: none !important; }
+
+/* ── 我的设备 ───────────────────────────── */
+.device-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid #EDEDED; }
+.device-section-head { display: flex; align-items: center; justify-content: space-between; }
+.device-section-head h3 { font-size: 15px; margin: 0; }
+.device-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.device-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid #EDEDED; border-radius: 10px; margin-bottom: 8px; }
+.device-name { font-size: 14px; font-weight: 600; }
+.device-name .tag { margin-left: 6px; font-weight: 400; }
+.device-meta { font-size: 12px; color: var(--text-3); margin-top: 2px; }
+.device-empty { font-size: 13px; color: var(--text-3); padding: 8px 2px; }
+.btn.danger { color: #B3261E; }
+
+/* ── 设置项 ─────────────────────────────── */
+.setting-option { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid #EDEDED; border-radius: 10px; margin-top: 10px; cursor: pointer; }
+.setting-option input { margin-top: 3px; }
+.setting-option b { font-size: 14px; font-weight: 600; display: block; }
+.setting-option small { font-size: 12px; color: var(--text-3); display: block; margin-top: 3px; line-height: 1.5; }
+.remember { display: flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--text-2); cursor: pointer; }
+
+/* ── 弹窗 ──────────────────────────────── */
+.modal-mask { position: fixed; inset: 0; background: rgba(15, 20, 22, 0.45); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.modal { width: 420px; max-width: calc(100% - 48px); background: #FFFFFF; border-radius: 14px; padding: 22px 22px 18px; box-shadow: 0 18px 48px rgba(0,0,0,0.22); }
+.modal h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; color: #1F2329; }
+.modal-sub { margin: 0; font-size: 13px; color: var(--text-3); line-height: 1.6; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+

@@ -1,0 +1,24 @@
+# 第三方组件声明（NOTICE）
+
+本项目分发或运行时使用以下第三方组件。各组件的著作权归其原作者所有，按各自的许可证使用。
+
+| 组件 | 版本/来源 | 许可证 | 在本项目中的用法 |
+|---|---|---|---|
+| AlkaidLab/moonlight-harmony | https://github.com/AlkaidLab/moonlight-harmony | GPL-3.0 | 平板端代码底座（其非官方衍生版本），版权归原作者 |
+| qiin2333/moonlight-vplus | https://github.com/qiin2333/moonlight-vplus | GPL-3.0 | 上述项目的上游 |
+| Sunshine | https://github.com/LizardByte/Sunshine | GPL-3.0 | 作为被控端主机程序分发；未修改其源码 |
+| Moonlight 协议库 moonlight-common-c | https://github.com/moonlight-stream/moonlight-common-c | GPL-3.0 | 平板端串流协议实现（作为子模块引用的分支由本项目维护） |
+| EasyTier | https://github.com/EasyTier/EasyTier | LGPL-3.0 | 组网组件；电脑端以独立进程调用官方二进制，平板端使用官方 ohos 包 |
+| OpenSSL（ohos 移植） | https://github.com/openssl/openssl | Apache-2.0 | 平板端 TLS |
+| libfvad | https://github.com/dpirch/libfvad | BSD-3-Clause | 音频触感 SDK 的语音活动检测 |
+| NSSM | https://nssm.cc | 公有领域 | Windows 服务壳 |
+| WebView2 | Microsoft | 微软专有许可（允许随应用分发） | 电脑端界面内核 |
+| WinDivert | https://github.com/basil00/WinDivert | LGPL-3.0 或 GPL-2.0（本项目按 LGPL-3.0 使用） | 随 EasyTier 分发的网络抓包组件 |
+| Wintun | https://github.com/WireGuard/wintun | GPL-2.0 | 随 EasyTier 分发的虚拟网卡驱动；**仅作为第三方组件原样随附，不适用本项目的 AGPL-3.0 授权** |
+| ZakoVDD / ZakoVirtualMouse | 第三方虚拟显示器与虚拟鼠标驱动，随 Sunshine 生态分发 | 未声明（版权归原作者） | 仅随安装包分发，公开源码库不含其二进制 |
+
+## 说明
+
+- 本项目自有代码依 AGPL-3.0 授权；上表中不同许可证的组件各自适用其原许可证，不能视为整体都在 AGPL-3.0 之下。
+- GPL-2.0 的 Wintun 与 AGPL-3.0 不兼容，因此它只以「独立第三方组件」的形式随包分发，不参与本项目代码的编译与链接。
+- 若您是上述组件的权利人，认为本项目的分发方式不妥，请联系我们，我们会及时调整（包括改为由使用者自行下载）。

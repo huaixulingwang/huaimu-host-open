@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>LingWangTray</AssemblyName>
+    <RootNamespace>LingWangRemote</RootNamespace>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Company>LingWang</Company>
+    <Product>OpenRemoteDesk</Product>
+    <AssemblyTitle>OpenRemoteDesk 电脑端</AssemblyTitle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2903.40" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 复用原有账号与校验口实现，不复制第二份 -->
+    <Compile Include="..\tray\AccountClient.cs" Link="Core\AccountClient.cs" />
+    <Compile Include="..\tray\AuthGate.cs" Link="Core\AuthGate.cs" />
+    <Compile Include="..\tray\HostAddress.cs" Link="Core\HostAddress.cs" />
+    <Compile Include="..\tray\StreamBox.cs" Link="Core\StreamBox.cs" />
+    <Compile Include="..\tray\MachineNetwork.cs" Link="Core\MachineNetwork.cs" />
+    <None Update="ui\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

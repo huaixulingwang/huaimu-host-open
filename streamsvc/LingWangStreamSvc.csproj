@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>LingWangStreamSvc</AssemblyName>
+    <RootNamespace>LingWangStream</RootNamespace>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Company>LingWang</Company>
+    <Product>OpenRemoteDesk</Product>
+    <AssemblyTitle>OpenRemoteDesk 串流服务</AssemblyTitle>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 校验口由服务托管：开机未登录桌面时托盘不在，平板只能靠服务应答 -->
+    <Compile Include="..\tray\AccountClient.cs" Link="Core\AccountClient.cs" />
+    <Compile Include="..\tray\AuthGate.cs" Link="Core\AuthGate.cs" />
+    <Compile Include="..\tray\HostAddress.cs" Link="Core\HostAddress.cs" />
+    <Compile Include="..\tray\StreamBox.cs" Link="Core\StreamBox.cs" />
+    <Compile Include="..\tray\MachineNetwork.cs" Link="Core\MachineNetwork.cs" />
+  </ItemGroup>
+
+</Project>
